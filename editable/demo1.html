@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>editable</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-editable.css"/>
+		 <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src=" js/jquery-1.10.2.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-editable.min.js"></script>
+	</head>
+	<body>
+		<script>
+//某列的写法
+     { "data": "firstName",	                    	 
+    	 	"name": "firstName",
+            "render":	function ( data, type, full, meta ) {
+        		  var template = '<a href="#" class="firstNameEditable editable editable-click" data-type="text" data-pk="{1}" data-name="firstName" data-url="/updateManAjax" data-title="New First Name">{0}</a>';
+            	  var html = template.format(full.firstName, full.manId);	//作者在这里使用了模板引擎，你自己直接拼字符串也可以	  	                    		  			  	                    		  
+            	  return html ;
+         	}  	         		                	 	
+    	 		         		                	 	
+     },
+
+
+//在dataTable的回调中注册editable组件。你必须写在dataTable的相关回调里面，只有等dataTable渲染完后，前面定义的editable dom结构才能被系统识别，也才能注册为editable组件
+	         "drawCallback": function( settings ) {
+		      	   $(".firstNameEditable").each(function(i,dom){
+		      		 $(dom).editable({
+		      				 success:function(response, newValue) {
+		      			        if(response.failed){//是不是failed取决于你的ajax服务的json结构。  	 
+		      			        	return response.error;  
+		      			        }
+		      			    },		
+	      				    error:function(response, newValue) {
+	      				    	console.log(response);
+		      			        return "网络或服务端错误";  
+		      			    }		
+		      	   	});
+		   		});
+	         },	     
+
+</script>
+	</body>
+</html>

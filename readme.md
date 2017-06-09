@@ -27,5 +27,5 @@ Object.assign() 方法用于将所有可枚举的属性的值从一个或多个�
     ## 示例
     * 复制一个object
         > var obj = { a: 1 };
-        > var copy = Object.assign({}, obj);
-        > console.log(copy); // { a: 1 }
+        var copy = Object.assign({}, obj);
+        console.log(copy); // { a: 1 }

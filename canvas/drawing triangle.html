@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>triangle</title>
+</head>
+<body>
+	<canvas id="canvs" width="150" height="150"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var ctx=canvs.getContext('2d');
+		ctx.beginPath();
+		ctx.moveTo(30,30);
+		ctx.lineTo(60,0);
+		ctx.lineTo(60,60);//lineTo画直线
+		ctx.fill();
+	</script>
+</body>
+</html>

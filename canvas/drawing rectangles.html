@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo2</title>
+</head>
+<body onload="draw();">
+	<canvas id="canvas" width="150" height="150"></canvas>
+	<script>
+		function draw(){
+			var canvas=document.getElementById("canvas");
+			if(canvas.getContext){
+                var ctx=canvas.getContext('2d');
+                ctx.fillRect(25,25,100,100);//x,y,width.height
+                ctx.clearRect(45,45,60,60);//清除指定的矩形区域，使其完全透明
+                ctx.strokeRect(50, 50, 50, 50);//矩形轮廓
+			}
+		}
+	</script>
+</body>
+</html>

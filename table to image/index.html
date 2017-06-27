@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>table export</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+
+<body>
+	<div id='tableArea' style="width:500px;">
+		
+	</div>
+	<div id="export">
+		<a data-type="image" href="javascript:;">导出图片</a>
+	</div>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/tableExport.js"></script>
+	<script>
+	var tableData={
+			"table_heads":["月份","类型","金额"],
+			"table_columns":["month","type","value"],
+			"data":[
+					{
+						"month": "1",
+						"type": "餐饮",
+						"value": 200
+					},
+					{
+						"month": "2",
+						"type": "餐饮",
+						"value": 200
+					},
+					{
+						"month": "3",
+						"type": "餐饮",
+						"value": 200
+					}
+				]
+		};
+	var heads=tableData.table_heads;
+	var data=tableData.data;
+	var tableArea=$("#tableArea");
+	function createTable(resultArray,heads,width){
+     
+      table=$('<table id="table1">');
+      table.width=500;
+      table.addClass('table table-bordered');
+      var thead=$('<thead>');
+      var tbody = $('<tbody>');
+      var tr = $('<tr>');
+      thead.append(tr)
+      for(var index in heads){
+        var head=heads[index];
+        var th=$('<th>');
+       /* th.addClass(widthclass[index]);*/
+        th.text(head);
+        tr.append(th);
+      }
+      
+      // create table rows
+        
+      for (var idx in resultArray) {
+          var tr = $('<tr>');
+          for(var i in resultArray[idx]){
+              var td = $('<td>');
+              td.text(resultArray[idx][i]);
+              
+              tr.append(td);
+          }
+          
+          tbody.append(tr);
+      }
+      
+      table.append(thead);
+      table.append(tbody);
+      return table;
+    }
+    var table=createTable(data,heads);
+    tableArea.append(table);
+	var $exportLink = document.getElementById('export');
+	$exportLink.addEventListener('click', function(e) {
+		e.preventDefault();
+		if (e.target.nodeName === "A") {
+		    tableExport('tableArea', 'imgs', e.target.getAttribute('data-type'));
+		}
+	}, false);
+	</script>
+</body>
+
+</html>

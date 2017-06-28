@@ -14,7 +14,7 @@
 			"data":[
 					{
 						"month": "1",
-						"type": "餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮",
+						"type": "餐饮",
 						"value": 200
 					},
 					{
@@ -24,18 +24,18 @@
 					},
 					{
 						"month": "20",
-						"type": "餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮餐饮",
+						"type": "餐饮",
 						"value": 200
 					},
 					{
 						"month": "3",
 						"type": "餐饮",
-						"value": 20000000001111100000000000000000000.01
+						"value": 200
 					},
 					{
 						"month": "3",
 						"type": "餐饮",
-						"value": 20000000001111100000000000000000000.01
+						"value": 200
 					}
 				]
 		}
@@ -48,10 +48,10 @@
 		var w = Math.floor(605/tabledata["table_heads"].length)
 	    function drawTable(){
 	    	//显示表名
-	    	ctx.font = "16px serif"
+	    	ctx.font = " 400 16px Helvetica"
 	    	var text = ctx.measureText("这是一个表格主标题");
 	        ctx.fillText("这是一个表格主标题",(600-text.width)/2,20);
-	        ctx.font = "10px serif"
+	        ctx.font = "11px Helvetica"
 	        var text = ctx.measureText("单位：$");
 	        ctx.fillText("单位：$",(600-text.width)/2,40);
 	    	//画表头
@@ -62,9 +62,10 @@
 	    		var text = ctx.measureText(tabledata["table_heads"][i]);
 	        	_x=beginX+(w-text.width)/2;
 	        	_y=beginY+20;
-	    		ctx.fillStyle = "#eee"
+	    		ctx.fillStyle = "#fde06b";
 	    		ctx.fillRect(beginX-2,beginY,w,h)
 	    		ctx.fillStyle = "#000"
+	    		ctx.font="bold 12px Arial";
 	    		ctx.fillText(tabledata["table_heads"][i],_x,_y);
 	    		ctx.rect(beginX-2,beginY,w,h);
 	    	}
@@ -100,11 +101,12 @@
 	    		for(ll in tabledata["data"][row-2]){
 		    		beginX = sign*w;
 		        	if(row%2==1){
-		        		ctx.fillStyle = "#fbdfac"
+		        		ctx.fillStyle = "#f5f5f5";
 			    		ctx.fillRect(beginX-2,beginY,w,h)
 		        	}
 		    		ctx.rect(beginX-2,beginY,w,h);
 		    		ctx.fillStyle = "#000"
+		    		ctx.font="normal 12px Arial";
 		    		var text = ctx.measureText(tabledata["data"][row-2][ll]);
 		    		//是否换行显示文字
 		    		if(text.width>=w){
@@ -128,7 +130,7 @@
 	    		}
 	    	}
 	    	//画ing
-	    	ctx.strokeStyle = "#999";
+	    	ctx.strokeStyle = "#ccc";
 	    	ctx.stroke();
 	    }
 	    drawTable()

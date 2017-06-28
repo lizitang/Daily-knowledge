@@ -29,3 +29,19 @@ Object.assign() 方法用于将所有可枚举的属性的值从一个或多个�
         > var obj = { a: 1 };
         var copy = Object.assign({}, obj);
         console.log(copy); // { a: 1 }
+
+    ## 1.   
+    // var myObject = {
+            foo: "bar",
+            func: function() {
+                var self = this;
+                console.log(this.foo);  //bar
+                console.log(self.foo);  //bar
+                //立即执行函数
+                (function() {
+                    console.log(this.foo);  //立即执行函数，this指向window
+                    console.log(self.foo);  //第四个self.foo输出bar，因为这个匿名函数所处的上下文中没有self，所以通过作用域链向上查找，从包含它的父函数中找到了指向myObject对象的self
+                }());
+            }
+        };
+        myObject.func();

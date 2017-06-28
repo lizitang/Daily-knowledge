@@ -27,10 +27,10 @@ function parseURL(url){
 				}
 				return ret;
 		}) (),
-		file : (a.pathname.math(/\/([^\/?#]+)$/i) || [,''])[1],
+		file : (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
 		hash: a.hash.replace('#',''),
-		path:a.pathname.peplace(/^([^\/])/,'/$1'),
-		segments: a.pathname.replace(/^\//,'').split('/');
+		path:a.pathname.replace(/^([^\/])/,'/$1'),
+		segments: a.pathname.replace(/^\//,'').split('/')
 	};
 }
 parseURL('http://www.cnblogs.com/wayou/p/');

@@ -45,21 +45,28 @@
 	    var row = 0;
 	    var beginX=0;
 		var beginY=0;
-		var w = Math.floor(600/tabledata["table_heads"].length)
+		var w = Math.floor(605/tabledata["table_heads"].length)
 	    function drawTable(){
 	    	//显示表名
-	    	var text = ctx.measureText("这是一个表格");
-	        ctx.fillText("这是一个表格",(600-text.width)/2,20);
+	    	ctx.font = "16px serif"
+	    	var text = ctx.measureText("这是一个表格主标题");
+	        ctx.fillText("这是一个表格主标题",(600-text.width)/2,20);
+	        ctx.font = "10px serif"
+	        var text = ctx.measureText("单位：$");
+	        ctx.fillText("单位：$",(600-text.width)/2,40);
 	    	//画表头
 	    	row =1;
 	    	for(var i=0;i<tabledata["table_heads"].length;i++){
-	    		beginY = h;
+	    		beginY = h+30;
 	    		beginX = i*w;
 	    		var text = ctx.measureText(tabledata["table_heads"][i]);
 	        	_x=beginX+(w-text.width)/2;
 	        	_y=beginY+20;
-	    		ctx.rect(beginX,beginY,w,h);
+	    		ctx.fillStyle = "#eee"
+	    		ctx.fillRect(beginX-2,beginY,w,h)
+	    		ctx.fillStyle = "#000"
 	    		ctx.fillText(tabledata["table_heads"][i],_x,_y);
+	    		ctx.rect(beginX-2,beginY,w,h);
 	    	}
 	    	//画表身
 	    	row =2;
@@ -92,6 +99,12 @@
 	    		console.log(row)
 	    		for(ll in tabledata["data"][row-2]){
 		    		beginX = sign*w;
+		        	if(row%2==1){
+		        		ctx.fillStyle = "#fbdfac"
+			    		ctx.fillRect(beginX-2,beginY,w,h)
+		        	}
+		    		ctx.rect(beginX-2,beginY,w,h);
+		    		ctx.fillStyle = "#000"
 		    		var text = ctx.measureText(tabledata["data"][row-2][ll]);
 		    		//是否换行显示文字
 		    		if(text.width>=w){
@@ -111,12 +124,11 @@
 			        	_y=beginY+20;
 			    		ctx.fillText(tabledata["data"][row-2][ll],_x,_y);
 		    		}
-		    		ctx.rect(beginX,beginY,w,h);
 	    			sign++;
 	    		}
 	    	}
 	    	//画ing
-	    	// ctx.strokeStyle = "red";
+	    	ctx.strokeStyle = "#999";
 	    	ctx.stroke();
 	    }
 	    drawTable()

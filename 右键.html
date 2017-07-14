@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>右键菜单</title>
+</head>
+<body onload="init()">
+	<div id="myDiv" style="background: red;width:50px;">
+		xixixi
+	</div>
+	<ul id="myMenu" style="position: absolute;visibility: hidden;background-color: silver">
+		<li>哈哈</li>
+		<li>嘻嘻</li>
+		<li>呵呵</li>
+	</ul>
+	<script type="text/javascript">
+		function init()
+        {
+            var div = document.getElementById("myDiv");
+            div.oncontextmenu = function(event)
+            {
+                //屏蔽掉浏览器本身的右键菜单
+　　　　　　　　  //如果存在方法event.preventDefault()，直接调用就行
+　　　　　　　　
+                event.returnValue = false;
+                //设置右键菜单的位置以及显示出来
+                var menu = document.getElementById("myMenu");
+                menu.style.left = event.clientX + "px";
+                menu.style.top = event.clientY + "px";
+                menu.style.visibility = "visible";
+            }
+            document.onclick = function(event)
+            {
+                //当左键点击的时候隐藏右键菜单
+                document.getElementById("myMenu").style.visibility = "hidden";
+            }
+        }
+	</script>
+</body>
+</html>
